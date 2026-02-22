@@ -4,4 +4,4 @@ app=Flask(__name__)
 
 app.route("/")
 def receive_email():
-    pass
+    return "Hello"
