@@ -2,7 +2,7 @@
 
 ## Structure
 
-Email is routed from my domain to render via cloudflare. The flask running on koyeb processes those emails and uploads to github.
+Email is routed from my domain to render via cloudflare. The flask running on render processes those emails and uploads to github which again the render displays.
 
 ## Why This?
 
