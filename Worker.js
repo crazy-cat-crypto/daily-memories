@@ -19,7 +19,7 @@ export default {
       }
     }
 
-    await fetch("https://daily-memories.baral-aayush.com.np/", {
+    await fetch("https://daily-memories.baral-aayush.com.np/cache-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
