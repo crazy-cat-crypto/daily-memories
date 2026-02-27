@@ -49,24 +49,33 @@ def cache_email():
         db.session.rollback()
     return jsonify({"message": "Email received successfully!"}), 200
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
-    if not "user" in session:
-        return render_template("authenticate.html")
+    
     return render_template("home.html")
 
 @app.route("/login",methods=["POST","GET"])
 def login():
-    pass
+    return render_template("login.html")
 
 @app.route("/signup",methods=["POST","GET"])
 def signup():
-    pass
+    return render_template("signup.html")
 
 @app.route("/resetpassword",methods=["POST","GET"])
 def reset_password():
-    pass
+    return render_template("reset_password.html")
 
 @app.route("/logout")
 def logout():
     pass
+
+@app.route("/dashboard", methods=["GET","POST"])
+def dashboard():
+    if not "user.id" in session:
+        return redirect(url_for("home"))
+    return render_template("dashboard.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")

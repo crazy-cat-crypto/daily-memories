@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}My Journal — Daily Memories{% endblock %}
+
+{% block content %}
+<div class="container container--wide page-wrap">
+
+    <!-- email reminder -->
+    <div class="email-hint">
+        📬 Send an email to <strong>daily-memories@baral-aayush.com.np</strong> from 
+        <strong>{{ session.get('user_email', 'your registered email') }}</strong> to add a new entry.
+    </div>
+
+    <!-- header -->
+    <div class="dashboard-header">
+        <div>
+            <span class="label">Your journal</span>
+            <h1 style="margin-top:6px;">All Entries</h1>
+        </div>
+    </div>
+
+    <!-- table -->
+    <div class="entry-table-wrap">
+        {% if entries %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Preview</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr onclick="window.location='{{ url_for('view_entry', entry_id=entry.id) }}'">
+                    <td class="td-date">
+                        {{ entry.timestamp.strftime('%d %b %Y') }}<br>
+                        <small style="color:var(--ink-faint);">{{ entry.timestamp.strftime('%I:%M %p') }}</small>
+                    </td>
+                    <td class="td-title">{{ entry.title }}</td>
+                    <td class="td-preview">{{ entry.body[:120] }}{% if entry.body|length > 120 %}…{% endif %}</td>
+                    <td class="td-actions" onclick="event.stopPropagation()">
+                        <a href="{{ url_for('edit_entry', entry_id=entry.id) }}" class="btn btn-ghost btn-sm">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📖</div>
+            <h3>No entries yet</h3>
+            <p>Send your first email to <strong>daily-memories@baral-aayush.com.np</strong> and it'll appear here.</p>
+            <a href="mailto:daily-memories@baral-aayush.com.np?subject=My first entry" class="btn btn-outline">Write first entry →</a>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

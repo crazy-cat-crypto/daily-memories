@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Sign Up — Daily Memories{% endblock %}
+
+{% block content %}
+<div class="page-wrap">
+    <div class="form-card">
+        <span class="label">Get started</span>
+        <h2 style="margin-top:6px;">Create account</h2>
+        <p class="form-sub">Start your private email journal today. Free, forever.</p>
+
+        <form method="POST" action="{{ url_for('signup') }}">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="At least 8 characters" required minlength="8" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required autocomplete="new-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Create account →</button>
+        </form>
+
+        <p class="form-footer" style="margin-top:16px; font-size:0.8rem; color:var(--ink-faint);">
+            By signing up you agree to keep your journal personal and not abuse the email system.
+        </p>
+
+        <div class="form-divider">or</div>
+
+        <p class="form-footer">
+            Already have an account? <a href="{{ url_for('login') }}">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

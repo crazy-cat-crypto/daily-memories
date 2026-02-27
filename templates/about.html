@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}About — Daily Memories{% endblock %}
+
+{% block content %}
+<div class="container page-wrap">
+
+    <div class="about-header fade-1">
+        <span class="label">The project</span>
+        <h1 style="margin-top:8px;">About Daily <em style="font-style:italic; color:var(--rust);">Memories</em></h1>
+        <p style="color:var(--ink-faint); margin-top:12px; font-size:1rem;">
+            A Computer Science project by Aayush Baral &middot; Class XI &middot; 2026
+        </p>
+    </div>
+
+    <div class="about-body">
+        <div class="about-text fade-2">
+            <h2>What is this?</h2>
+            <p>
+                Daily Memories is a personal journaling platform that uses email as the writing interface. 
+                Instead of opening yet another app, you simply send an email — and your entry is saved, 
+                timestamped, and waiting for you when you log in.
+            </p>
+            <p>
+                The idea came from the frustration of journaling apps that feel like chores. 
+                Email is already something you do. Why not make it count?
+            </p>
+
+            <h2>How does it work?</h2>
+            <p>
+                When you send an email to 
+                <a href="mailto:daily-memories@baral-aayush.com.np">daily-memories@baral-aayush.com.np</a>, 
+                the server parses the sender, subject, and body — then stores it linked to your account. 
+                The subject line becomes your entry title, and the body becomes your journal content.
+            </p>
+            <p>
+                You can view all entries on your dashboard, sorted chronologically, 
+                and edit any entry directly in your browser.
+            </p>
+
+            <h2>Security &amp; Privacy</h2>
+            <p>
+                Your entries are linked to your account only. Passwords are hashed — never stored in plain text. 
+                Sessions are secured with a secret key. The database is hosted on Neon PostgreSQL with 
+                SSL-enforced connections.
+            </p>
+            <p>
+                This is a student project. Your journal is private, but this is not a commercial product 
+                with enterprise-level security guarantees.
+            </p>
+
+            <h2>About the developer</h2>
+            <p>
+                Hi, I'm <strong>Aayush Baral</strong> — a student from Nepal currently in Class XI (2025–2026), 
+                studying Physics, Mathematics, Chemistry, and Computer Science. 
+                This project was built as my Computer Science practical work.
+            </p>
+            <p>
+                The backend is built with Flask and SQLAlchemy, the database is PostgreSQL on Neon, 
+                and the app is deployed on Render. The email receiving is handled via a custom pipeline.
+            </p>
+        </div>
+
+        <div class="about-sidebar fade-3">
+            <div class="info-card">
+                <span class="label">Project info</span>
+                <p><strong>Name:</strong> Daily Memories<br>
+                <strong>Developer:</strong> Aayush Baral<br>
+                <strong>Year:</strong> 2026<br>
+                <strong>Class:</strong> XI (Computer Science)<br>
+                <strong>Domain:</strong> daily-memories.baral-aayush.com.np</p>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Tech stack</span>
+                <div class="tech-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">SQLAlchemy</span>
+                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Neon</span>
+                    <span class="tag">Render</span>
+                    <span class="tag">Jinja2</span>
+                    <span class="tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span class="label">Contact</span>
+                <p>
+                    <a href="mailto:daily-memories@baral-aayush.com.np">daily-memories@baral-aayush.com.np</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
