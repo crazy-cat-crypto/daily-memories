@@ -9,8 +9,19 @@
         {% endblock title %}
          | Daily Memories
     </title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 </head>
 <body>
+    <div>
+        <ul style="list-style-type: none;float: right;font-size: large;">
+            <li style="display:inline"><a href="{{url_for('home')}}">Home</a></li>
+            {% if 'user' in session %}
+            <li style="display:inline"><a href="{{url_for('logout')}}">Log Out</a></li>
+            {% endif%}
+        </ul>
+    </div>
+    {% block body %}
     
+    {% endblock body %}
 </body>
 </html>

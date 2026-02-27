@@ -13,11 +13,16 @@ db = SQLAlchemy(app)
 
 class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email_from = db.Column(db.String(120), nullable=False)
-    email_subject = db.Column(db.String(255), nullable=False)
-    email_body = db.Column(db.Text, nullable=False)
+    user_id=db.Column(db.Integer,db.ForeignKey('user.id'),nullable=False)
+    title = db.Column(db.String(255), nullable=False)
+    body = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=lambda: datetime.now(pytz.timezone('Asia/Kathmandu')))
 
+class User(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
+    entries = db.relationship('Entry', backref='user', lazy=True)
 
 
 with app.app_context():
@@ -30,9 +35,38 @@ def cache_email():
     email_subject= email_data.get("subject")
     email_body= email_data.get("body")
     print(f"Received email from: {email_from}, with subject: {email_subject}, and body: {email_body}")
+    user=User.query.filter_by(email=email_from).first()
+    if not user:
+        user=User(email=email_from,password=os.getenv("DEFAULT_PASSWORD"))
+        db.session.add(user)
+        db.session.flush()
+    new_entry=Entry(user_id=user.id,title=email_subject,body=email_body)
+    db.session.add(new_entry)
+    try:
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        db.session.rollback()
     return jsonify({"message": "Email received successfully!"}), 200
 
 @app.route("/", methods=["GET"])
 def home():
+    if not "user" in session:
+        return render_template("authenticate.html")
+    return render_template("home.html")
 
-    return render_template("index.html")
+@app.route("/login",methods=["POST","GET"])
+def login():
+    pass
+
+@app.route("/signup",methods=["POST","GET"])
+def signup():
+    pass
+
+@app.route("/resetpassword",methods=["POST","GET"])
+def reset_password():
+    pass
+
+@app.route("/logout")
+def logout():
+    pass

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block body %}
+    <h1>
+        Login Or Signup To Continue
+    </h1>
+    <h2>
+        <a href="{{url_for(singup)}}">SIGN UP</a> to create a account or <a href="{{url_for(login)}}">LOGIN</a> if you already have one!!.<br>
+        Then send your email to <a href="mailto:daily-memories@baral-aayush.com.np">daily-memories@baral-aayush.com.np</a> to view your journals.
+    </h2>
+{% endblock body %}
