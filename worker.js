@@ -24,8 +24,8 @@ export default {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         from: message.from,
-        subject: message.headers.get("subject") || "No Subject",
-        body: cleanBody.trim() || "Empty body"
+        subject: message.headers.get("subject") || "No Title",
+        body: cleanBody.trim() || "Empty Body"
       })
     });
   }
