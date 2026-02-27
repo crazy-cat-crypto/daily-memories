@@ -24,7 +24,7 @@ with app.app_context():
     db.create_all()
 
 @app.route("/cache-email", methods=["POST"])
-def home():
+def cache_email():
     email_data = request.get_json()
     email_from= email_data.get("from")
     email_subject= email_data.get("subject")
